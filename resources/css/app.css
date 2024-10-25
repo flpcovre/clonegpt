@@ -1,0 +1,5 @@
+@import './vendor/sidebar.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
