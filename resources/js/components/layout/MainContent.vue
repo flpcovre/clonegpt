@@ -1,6 +1,8 @@
 <template>
-    <HomeScreen v-if="screen === 'home'"/>
-    <AboutScreen v-if="screen === 'about'"/>
+    <div class="col py-3 bg-dark">
+        <HomeScreen v-if="screen === 'home'"/>
+        <AboutScreen v-if="screen === 'about'"/>
+    </div>
 </template>
 
 <script setup>
