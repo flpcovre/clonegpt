@@ -1,14 +1,14 @@
 <template>
-        <li class="nav-item">
-            <GoTo to="/" customClass="nav-link align-middle px-0">
-                <i class="fa-solid fa-house"></i>
-                <span class="d-none d-sm-inline">Home</span>
+        <li class="nav-item w-100">
+            <GoTo to="/" customClass="nav-link align-middle px-2 menu-item">
+                <i class="fa-solid fa-house icon"></i>
+                <span class="d-none d-sm-inline ml-2">Home</span>
             </GoTo>
         </li>
-        <li>
-            <GoTo to="/about" customClass="nav-link align-middle px-0">
-                <i class="fa-solid fa-house"></i>
-                <span class="d-none d-sm-inline">About</span>
+        <li class="nav-item w-100">
+            <GoTo to="/about" customClass="nav-link align-middle px-2 menu-item">
+                <i class="fa-solid fa-circle-info icon"></i>
+                <span class="d-none d-sm-inline ml-2">About</span>
             </GoTo>
         </li>
 </template>

@@ -6,6 +6,7 @@
 
 body {
     color: white !important;
+    overflow-y: hidden !important;
 }
 
 .divider {
@@ -13,4 +14,56 @@ body {
     height: 1px !important;
     background-color: white !important;
     margin: 10px 0 !important;
+}
+
+.nav-item:hover {
+    background-color: #212121;
+    border-radius: 8px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+}
+
+.menu-item .icon {
+    min-width: 20px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.chat-item .icon {
+    min-width: 20px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.sidebar {
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #888;
 }
