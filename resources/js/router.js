@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeScreen from '@/components/screens/HomeScreen.vue';
 import AboutScreen from '@/components/screens/AboutScreen.vue';
+import ChatScreen from '@/components/screens/ChatScreen.vue';
 
 const routes = [
     {
@@ -12,6 +13,11 @@ const routes = [
       path: '/about/:id?',
       name: 'about',
       component: AboutScreen
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: ChatScreen 
     }
   ];
 
