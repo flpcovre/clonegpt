@@ -3,6 +3,7 @@
         <HomeScreen v-if="screen === 'home'"/>
         <AboutScreen v-if="screen === 'about'"/>
         <ChatScreen v-if="screen === 'chat'"/>
+        <NotFound v-if="screen === 'NotFound'"/>
     </div>
 </template>
 
@@ -13,6 +14,7 @@
     import HomeScreen from '@/components/screens/HomeScreen.vue';
     import AboutScreen from '@/components/screens/AboutScreen.vue';
     import ChatScreen from '@/components/screens/ChatScreen.vue';
+    import NotFound from '@/components/screens/NotFound.vue';
 
     const route = useRoute();
     const screen = ref('');

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeScreen from '@/components/screens/HomeScreen.vue';
 import AboutScreen from '@/components/screens/AboutScreen.vue';
 import ChatScreen from '@/components/screens/ChatScreen.vue';
+import NotFound from '@/components/screens/NotFound.vue';
 
 const routes = [
     {
@@ -21,6 +22,12 @@ const routes = [
       name: 'chat',
       component: ChatScreen,
       meta: { title: 'Conversations' }
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFound,
+      meta: { title: '404' }
     }
   ];
 

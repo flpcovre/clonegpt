@@ -1,11 +1,11 @@
 <template>
     <div class="new-chat">
         <div class="text-center">
-            <h2>Como posso te ajudar?</h2>
+            <h2 ref="newText"></h2>
         </div>
         <div class="chat-message-new">
             <div class="input-group mb-0">
-                <textarea class="form-control send-input" rows="1" placeholder="Enter text here..." ref="textarea" @input="adjustHeight"></textarea>
+                <textarea class="form-control send-input" rows="1" placeholder="Enter text here..." ref="textarea" @input="adjustHeight" @keyup.enter.exact="sendMessage" @keydown.enter.prevent="handleEnter"></textarea>
             </div>
         </div>
     </div>
@@ -15,6 +15,33 @@
     import {ref, onMounted} from 'vue';
 
     const textarea = ref(null);
+    const newText = ref(null);
+
+    const showText = async () => {
+        const text = 'Olá, como posso te ajudar?'
+        let i = 0;
+
+        for (i = 0; i < text.length; i++) {
+            newText.value.innerHTML += text[i];
+            await new Promise(r => setTimeout(r, 30));
+        }
+    }
+
+    const sendMessage = () => {
+        const message = textarea.value.value;
+        if (message.trim()) {
+            console.log(message);
+        }
+    }
+
+    const handleEnter = (event) => {
+        if (event.shiftKey) {
+            textarea.value.value += '\n';
+            adjustHeight();
+        } else {
+            event.preventDefault();
+        }
+    }
 
     const adjustHeight = () => {
         if (textarea.value) {
@@ -26,11 +53,14 @@
             textarea.value.style.height = `${height}px`;
             textarea.value.style.overflowY = height >= maxHeight ? 'auto' : 'hidden';
 
+            textarea.value.scrollTop = textarea.value.scrollHeight;
+
             textarea.value.focus();
         }
     };
 
     onMounted(() => {
-        adjustHeight();
+        showText(),
+        adjustHeight()
     });
 </script>
