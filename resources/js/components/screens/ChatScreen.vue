@@ -11,6 +11,6 @@
 </template>
 
 <script setup>
-    import '../../../css/vendor/chat.css';
+    import '@css/vendor/chat.css';
     import Chat from '@/components/chats/chat.vue';
 </script>

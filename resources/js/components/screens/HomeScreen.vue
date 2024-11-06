@@ -1,7 +1,8 @@
 <template>
-    <h2>Você está na Home</h2>
+    <NewChatPrompt></NewChatPrompt>
 </template>
 
 <script setup>
-
+    import '@css/vendor/chat.css';
+    import NewChatPrompt from '@/components/chats/NewChatPrompt.vue';
 </script>

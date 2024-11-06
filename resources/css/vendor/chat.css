@@ -85,7 +85,8 @@
 
 .chat .chat-history {
     padding: 20px;
-    max-height: 600px;
+    max-height: 80vh;
+    min-height: 80vh;
     overflow-y: auto;
 }
 
@@ -123,7 +124,7 @@
     font-size: 16px;
     border-radius: 7px;
     display: inline-block;
-    position: relative
+    position: relative;
 }
 
 .chat .chat-history .message:after {
@@ -141,7 +142,7 @@
 }
 
 .chat .chat-history .my-message {
-    background: #2d3136;
+    /* background: #2D3136; */
     color: white;
 }
 
@@ -286,5 +287,56 @@
 }
 
 .chat-history::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+h2 {
+    color: white;
+}
+
+.new-chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.text-center {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.chat-message {
+    width: 100%;
+    margin-top: 5vh;
+}
+
+.chat-message-new {
+    min-width: 50vw;
+}
+
+.send-input {
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    resize: none;
+}
+
+.send-input::-webkit-scrollbar {
+    width: 5px;
+}
+
+.send-input::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 6px;
+}
+
+.send-input::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 6px;
+}
+
+.send-input::-webkit-scrollbar-thumb:hover {
     background: #888;
 }

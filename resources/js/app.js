@@ -6,7 +6,7 @@ import '@fortawesome/fontawesome-free/js/all.js';
 
 import { createApp } from 'vue';
 import router from './router';
-import App from './App.vue';
+import App from './app.vue';
 
 createApp(App)
     .use(router)

@@ -1,6 +1,6 @@
 <template>
     <div class="chat">
-        <div class="chat-history">
+        <div class="chat-history" ref="chatHistory">
             <ul class="m-b-0">
                 <li class="clearfix">
                     <div class="message-data text-right">
@@ -15,100 +15,27 @@
                     </div>
                     <div class="message my-message">Are we meeting today?</div>
                 </li>
-                <li class="clearfix">
-                    <div class="message-data">
-                        <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Project has been already finished and I have results
-                        to show you.</div>
-                </li>
-                <li class="clearfix">
-                    <div class="message-data">
-                        <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Project has been already finished and I have results
-                        to show you.</div>
-                </li>
-                <li class="clearfix">
-                    <div class="message-data">
-                        <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Project has been already finished and I have results
-                        to show you.</div>
-                </li>
-                <li class="clearfix">
-                    <div class="message-data">
-                        <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Project has been already finished and I have results
-                        to show you.</div>
-                </li>
-                <li class="clearfix">
-                    <div class="message-data">
-                        <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Project has been already finished and I have results
-                        to show you.</div>
-                </li>
-                <li class="clearfix">
-                    <div class="message-data">
-                        <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Project has been already finished and I have results
-                        to show you.</div>
-                </li>
-                <li class="clearfix">
-                    <div class="message-data">
-                        <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Project has been already finished and I have results
-                        to show you.</div>
-                </li>
-                <li class="clearfix">
-                    <div class="message-data">
-                        <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Project has been already finished and I have results
-                        to show you.</div>
-                </li>
-                <li class="clearfix">
-                    <div class="message-data">
-                        <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Project has been already finished and I have results
-                        to show you.</div>
-                </li>
-                <li class="clearfix">
-                    <div class="message-data">
-                        <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Project has been already finished and I have results
-                        to show you.</div>
-                </li>
-                <li class="clearfix">
-                    <div class="message-data">
-                        <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Project has been already finished and I have results
-                        to show you.</div>
-                </li>
-                <li class="clearfix">
-                    <div class="message-data">
-                        <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Project has been already finished and I have results
-                        to show you.</div>
-                </li>
             </ul>
         </div>
-        <div class="chat-message">
-            <div class="input-group mb-0">
-                <input type="text" class="form-control send-input" placeholder="Enter text here...">
-            </div>
-        </div>
+
+        <OldChatPrompt></OldChatPrompt>
     </div>
 </template>
 
 <script setup>
+    import {ref, onMounted, nextTick} from 'vue';
 
+    import OldChatPrompt from '@/components/chats/OldChatPrompt.vue';
+
+    const chatHistory = ref(null);
+
+    const scrollToBottom = () => {
+        if (chatHistory.value) {
+            chatHistory.value.scrollTop = chatHistory.value.scrollHeight;
+        }
+    };
+ 
+    onMounted(() => {
+        nextTick(scrollToBottom)
+    });
 </script>

@@ -7,23 +7,31 @@ const routes = [
     {
       path: '/',
       name: 'home',
-      component: HomeScreen
+      component: HomeScreen,
+      meta: { title: 'New Chat' }
     },
     {
       path: '/about/:id?',
       name: 'about',
-      component: AboutScreen
+      component: AboutScreen,
+      meta: { title: 'About Us' }
     },
     {
       path: '/chat',
       name: 'chat',
-      component: ChatScreen 
+      component: ChatScreen,
+      meta: { title: 'Conversations' }
     }
   ];
 
 const router = createRouter({
     history: createWebHistory(),
     routes
+});
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  next();
 });
 
 export default router;
