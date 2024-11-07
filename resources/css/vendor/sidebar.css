@@ -67,9 +67,40 @@
 }
 
 .chat-name {
-    max-width: 250px;
+    max-width: 180px !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
+}
+
+.chat-list-item {
+    display: flex;
+    align-items: center;
+}
+
+.chat-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    color: white !important;
+    font-weight: bold !important;
+    text-decoration: none;
+    flex-grow: 1;
+}
+
+.delete-icon {
+    cursor: pointer;
+    color: #dc3545;
+    margin-left: auto;
+}
+
+.delete-icon:hover {
+    color: #ff5c5c;
 }

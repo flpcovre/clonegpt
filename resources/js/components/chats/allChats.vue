@@ -1,12 +1,14 @@
 <template>
-    <TransitionGroup name="chatList">
-        <li class="nav-item w-100" v-for="(chat, index) in chats" :key="index">
+    <li class="nav-item w-100 chat-list-item" v-for="(chat, index) in chats" :key="index">
+        <div class="chat-item-container">
             <GoTo :to="'/chat/' + chat.id" customClass="nav-link align-middle px-2 chat-item">
-                <i class="fa-regular fa-comment"></i>
+                <i class="fa-regular fa-comment icon"></i>
                 <span class="chat-name d-none d-sm-inline ml-2">{{ chat.name }}</span>
             </GoTo>
-        </li>
-    </TransitionGroup>
+            <a @click.stop="deleteChat(chat.id)"><i class="fa-regular fa-trash-can delete-icon"
+                    title="Excluir chat"></i></a>
+        </div>
+    </li>
 </template>
 
 <script setup>
@@ -14,20 +16,24 @@
     import { ref, onMounted, onUnmounted } from 'vue';
     import { useRouter } from 'vue-router';
     import eventBus from '@/utils/eventBus';
-    
+
     const router = useRouter();
 
     const chats = ref([]);
     let i;
 
     const addChat = (value) => {
-        chats.value.unshift({ id: i, name: value});
-        
+        chats.value.unshift({ id: i, name: value });
+
         router.push('/chat/' + i).then(() => {
             eventBus.emit('newMessage', value);
         });
-        
+
         i++;
+    }
+
+    const deleteChat = (id) => {
+        chats.value = chats.value.filter(chat => chat.id !== id);
     }
 
     const getAllChats = async () => {
