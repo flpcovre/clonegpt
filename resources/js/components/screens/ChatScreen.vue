@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row clearfix">
             <div class="col-lg-12">
-                <div class="card chat-app bg-dark">
+                <div class="chat-app bg-dark">
                     <Chat/>
                 </div>
             </div>

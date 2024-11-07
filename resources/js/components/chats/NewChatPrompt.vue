@@ -13,6 +13,7 @@
 
 <script setup>
     import {ref, onMounted} from 'vue';
+    import eventBus from '@/utils/eventBus';
 
     const textarea = ref(null);
     const newText = ref(null);
@@ -22,15 +23,19 @@
         let i = 0;
 
         for (i = 0; i < text.length; i++) {
-            newText.value.innerHTML += text[i];
-            await new Promise(r => setTimeout(r, 30));
+            if (newText.value) {
+                newText.value.innerHTML += text[i];
+                await new Promise(r => setTimeout(r, 30));
+            }
         }
     }
 
     const sendMessage = () => {
         const message = textarea.value.value;
+
         if (message.trim()) {
-            console.log(message);
+            eventBus.emit('newChat', message);
+            textarea.value.value = '';
         }
     }
 

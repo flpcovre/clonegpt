@@ -60,3 +60,16 @@
 .sidebar::-webkit-scrollbar-thumb:hover {
     background: #888;
 }
+
+.chat-item {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.chat-name {
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}

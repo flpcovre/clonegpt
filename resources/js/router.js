@@ -12,13 +12,13 @@ const routes = [
       meta: { title: 'New Chat' }
     },
     {
-      path: '/about/:id?',
+      path: '/about',
       name: 'about',
       component: AboutScreen,
       meta: { title: 'About Us' }
     },
     {
-      path: '/chat',
+      path: '/chat/:id',
       name: 'chat',
       component: ChatScreen,
       meta: { title: 'Conversations' }
@@ -34,11 +34,6 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes
-});
-
-router.beforeEach((to, from, next) => {
-  document.title = to.meta.title;
-  next();
 });
 
 export default router;
