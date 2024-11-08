@@ -21,5 +21,5 @@
 <script setup>
     import GoTo from '@/components/ui/GoTo.vue';
     import ComponentsMenu from '@/components/layout/sidebar-components/ComponentsMenu.vue';
-    import ComponentsChats from '@/components/layout/sidebar-components/ComponentsChats.vue'
+    import ComponentsChats from '@/components/layout/sidebar-components/ComponentsChats.vue';
 </script>

@@ -5,8 +5,10 @@
                 <i class="fa-regular fa-comment icon"></i>
                 <span class="chat-name d-none d-sm-inline ml-2">{{ chat.name }}</span>
             </GoTo>
-            <a @click.stop="deleteChat(chat.id)"><i class="fa-regular fa-trash-can delete-icon"
-                    title="Excluir chat"></i></a>
+            <a @click.stop="deleteChat(chat.id)">
+                <i class="fa-regular fa-trash-can delete-icon"
+                    title="Excluir chat"></i>
+            </a>
         </div>
     </li>
 </template>
@@ -15,9 +17,11 @@
     import GoTo from '@/components/ui/GoTo.vue';
     import { ref, onMounted, onUnmounted } from 'vue';
     import { useRouter } from 'vue-router';
+    import { useDialogBox } from "@/composables/useDialogBox"; 
     import eventBus from '@/utils/eventBus';
 
     const router = useRouter();
+    const { openDialog } = useDialogBox();
 
     const chats = ref([]);
     let i;
@@ -33,7 +37,8 @@
     }
 
     const deleteChat = (id) => {
-        chats.value = chats.value.filter(chat => chat.id !== id);
+        // chats.value = chats.value.filter(chat => chat.id !== id);
+        openDialog();
     }
 
     const getAllChats = async () => {
