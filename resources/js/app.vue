@@ -1,6 +1,6 @@
 <template>
     <Index/>
-    <LoadingOverlay/>
+    <!-- <LoadingOverlay/> -->
     <DialogBox/>
 </template>
 
@@ -19,13 +19,13 @@
 
     router.beforeEach(async (to, from, next) => {
         document.title = to.meta.title;
-        isVisible.value = true;
+        // isVisible.value = true;
         next();
     });
 
-    router.afterEach(() => {
-        requestAnimationFrame(() => {
-            isVisible.value = false;
-        });
-    });
+    // router.afterEach(() => {
+    //     requestAnimationFrame(() => {
+    //         isVisible.value = false;
+    //     });
+    // });
 </script>

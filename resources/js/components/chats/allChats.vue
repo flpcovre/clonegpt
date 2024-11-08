@@ -1,30 +1,47 @@
 <template>
     <li class="nav-item w-100 chat-list-item" v-for="(chat, index) in chats" :key="index">
-        <div class="chat-item-container">
-            <GoTo :to="'/chat/' + chat.id" customClass="nav-link align-middle px-2 chat-item">
-                <i class="fa-regular fa-comment icon"></i>
-                <span class="chat-name d-none d-sm-inline ml-2">{{ chat.name }}</span>
-            </GoTo>
-            <a @click.stop="deleteChat(chat.id)">
-                <i class="fa-regular fa-trash-can delete-icon"
-                    title="Excluir chat"></i>
-            </a>
-        </div>
+        <v-hover v-slot="{ isHovering, props }">
+            <div class="chat-item-container" v-bind="props" @click="liActive = index">
+                <GoTo :to="'/chat/' + chat.id" customClass="nav-link align-middle px-2 chat-item">
+                    <i class="fa-regular fa-comment icon"></i>
+                    <span class="chat-name d-none d-sm-inline ml-2">{{ chat.name }}</span>
+                </GoTo>
+    
+                <a @click="liActive = index" v-if="isHovering || (liActive == index)">
+                    <i class="fa-solid fa-ellipsis menu-icon"></i>
+                    <v-menu activator="parent" v-click-outside="onClickOutside">
+                        <v-list>
+                            <v-list-item key="1" value="1" @click="deleteChat(chat.id)">
+                                <v-list-item-title>Excluir</v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                </a>
+            </div>
+        </v-hover>
     </li>
 </template>
 
 <script setup>
-    import GoTo from '@/components/ui/GoTo.vue';
     import { ref, onMounted, onUnmounted } from 'vue';
+    import GoTo from '@/components/ui/GoTo.vue';
+
     import { useRouter } from 'vue-router';
-    import { useDialogBox } from "@/composables/useDialogBox"; 
+    import { useDialogBox } from "@/composables/useDialogBox";
+
     import eventBus from '@/utils/eventBus';
 
     const router = useRouter();
     const { openDialog } = useDialogBox();
 
     const chats = ref([]);
+    const liActive = ref(null);
+
     let i;
+
+    const onClickOutside = () => {
+        liActive.value = null;
+    }
 
     const addChat = (value) => {
         chats.value.unshift({ id: i, name: value });
@@ -38,7 +55,7 @@
 
     const deleteChat = (id) => {
         // chats.value = chats.value.filter(chat => chat.id !== id);
-        openDialog();
+        openDialog()
     }
 
     const getAllChats = async () => {
