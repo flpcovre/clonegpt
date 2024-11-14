@@ -1,15 +1,15 @@
 <template>
     <v-dialog max-width="500" v-model="isDialogVisible">
-        <v-card title="Dialog">
+        <v-card :title="title">
             <v-card-text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.
+                {{ message }}
             </v-card-text>
 
             <v-card-actions>
                 <v-spacer></v-spacer>
 
-                <v-btn text="Fechar" @click="closeDialog()"></v-btn>
+                <v-btn text="Fechar" @click="handleCancel"></v-btn>
+                <v-btn v-if="onOk" text="Confirmar" @click="handleOk"></v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -18,5 +18,5 @@
 <script setup>
 import { useDialogBox } from '@/composables/useDialogBox';
 
-const { isDialogVisible, closeDialog } = useDialogBox();
+const { isDialogVisible, onOk, title, message, handleOk, handleCancel } = useDialogBox();
 </script>

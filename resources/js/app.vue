@@ -1,6 +1,5 @@
 <template>
     <Index/>
-    <!-- <LoadingOverlay/> -->
     <DialogBox/>
 </template>
 
@@ -16,16 +15,10 @@
 
     const router = useRouter();
     const { isVisible } = useLoadingOverlay();
-
+    
     router.beforeEach(async (to, from, next) => {
         document.title = to.meta.title;
-        // isVisible.value = true;
         next();
     });
-
-    // router.afterEach(() => {
-    //     requestAnimationFrame(() => {
-    //         isVisible.value = false;
-    //     });
-    // });
+    
 </script>

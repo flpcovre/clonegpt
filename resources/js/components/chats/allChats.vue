@@ -9,9 +9,9 @@
     
                 <a @click="liActive = index" v-if="isHovering || (liActive == index)">
                     <i class="fa-solid fa-ellipsis menu-icon"></i>
-                    <v-menu activator="parent" v-click-outside="onClickOutside">
+                    <v-menu activator="parent">
                         <v-list>
-                            <v-list-item key="1" value="1" @click="deleteChat(chat.id)">
+                            <v-list-item key="1" value="1" @click="openDeleteChatDialog(chat.id)">
                                 <v-list-item-title>Excluir</v-list-item-title>
                             </v-list-item>
                         </v-list>
@@ -26,13 +26,14 @@
     import { ref, onMounted, onUnmounted } from 'vue';
     import GoTo from '@/components/ui/GoTo.vue';
 
-    import { useRouter } from 'vue-router';
+    import { useRouter, useRoute } from 'vue-router';
     import { useDialogBox } from "@/composables/useDialogBox";
 
     import eventBus from '@/utils/eventBus';
 
     const router = useRouter();
-    const { openDialog } = useDialogBox();
+    const route  = useRoute();
+    const dialog = useDialogBox();
 
     const chats = ref([]);
     const liActive = ref(null);
@@ -53,9 +54,20 @@
         i++;
     }
 
+    const openDeleteChatDialog = (id) => {
+        dialog.openDialog({
+            dialogTitle: 'Excluir',
+            dialogMessage: 'Você deseja excluir essa Conversa?',
+            okCallback: () => deleteChat(id)
+        });
+    }
+
     const deleteChat = (id) => {
-        // chats.value = chats.value.filter(chat => chat.id !== id);
-        openDialog()
+        chats.value = chats.value.filter(chat => chat.id !== id);
+
+        if (route.params.id == id) {
+            router.push('/');
+        } 
     }
 
     const getAllChats = async () => {
