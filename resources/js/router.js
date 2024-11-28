@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
+
 import HomeScreen from '@/components/screens/HomeScreen.vue';
 import AboutScreen from '@/components/screens/AboutScreen.vue';
 import ChatScreen from '@/components/screens/ChatScreen.vue';
-import NotFound from '@/components/screens/NotFound.vue';
+import NotFoundScreen from '@/components/screens/NotFoundScreen.vue';
+import ServicesChatScreen from '@/components/screens/ServicesChatScreen.vue';
 
 const routes = [
     {
@@ -26,7 +28,7 @@ const routes = [
     {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
-      component: NotFound,
+      component: NotFoundScreen,
       meta: { title: '404' }
     }
   ];
@@ -36,13 +38,9 @@ const router = createRouter({
     routes
 });
 
-// router.beforeEach((to, from, next) => {
-//   nprogress.start();
-//   next();
-// });
-
-// router.afterEach(() => {
-//   nprogress.done();
-// });
+router.beforeEach(async (to, from, next) => {
+  document.title = to.meta.title;
+  next();
+});
 
 export default router;

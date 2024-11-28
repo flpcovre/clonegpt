@@ -12,13 +12,5 @@
     import { useDialogBox } from "@/composables/useDialogBox";
 
     import { useRouter } from 'vue-router';
-
-    const router = useRouter();
-    const { isVisible } = useLoadingOverlay();
-    
-    router.beforeEach(async (to, from, next) => {
-        document.title = to.meta.title;
-        next();
-    });
     
 </script>
