@@ -9,5 +9,9 @@
 <body>
     <div id="app"></div>
     @vite(['resources/js/app.js'])
+    
+<script>
+    window.BASE_URL = "{{ config('app.url') }}{{ ':' . request()->getPort() }}";
+</script>
 </body>
 </html>

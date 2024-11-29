@@ -1,12 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { authService } from '@/services/authService';
 
 import HomeScreen from '@/components/screens/HomeScreen.vue';
 import AboutScreen from '@/components/screens/AboutScreen.vue';
 import ChatScreen from '@/components/screens/ChatScreen.vue';
 import NotFoundScreen from '@/components/screens/NotFoundScreen.vue';
-import ServicesChatScreen from '@/components/screens/ServicesChatScreen.vue';
+import LoginScreen from '@/components/screens/LoginScreen.vue';
 
 const routes = [
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginScreen,
+      meta: { title: 'Sign In' }
+    },
     {
       path: '/',
       name: 'home',
@@ -39,7 +46,11 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  document.title = to.meta.title;
+  if (!authService.isAuthenticated()) {
+    document.title = 'Sign In';
+  } else {
+    document.title = to.meta.title;
+  }
   next();
 });
 

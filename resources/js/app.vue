@@ -1,16 +1,19 @@
 <template>
-    <Index/>
+    <Index v-if="isAuth"/>
+    <LoginScreen v-else/>
     <DialogBox/>
 </template>
 
 <script setup> 
+    import { ref } from 'vue'; 
+    import { authService } from '@/services/authService';
+
     import Index from "@/components/layout/index.vue";
-    import LoadingOverlay from "@/components/ui/LoadingOverlay.vue";
     import DialogBox from "@/components/ui/DialogBox.vue";
-
-    import { useLoadingOverlay } from "@/composables/useLoadingOverlay";
-    import { useDialogBox } from "@/composables/useDialogBox";
-
-    import { useRouter } from 'vue-router';
     
+    import LoginScreen from "@/components/screens/LoginScreen.vue";
+
+    const isAuth = ref(null);
+
+    isAuth.value = authService.isAuthenticated();
 </script>
