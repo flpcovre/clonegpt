@@ -46,12 +46,14 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  if (!authService.isAuthenticated()) {
-    document.title = 'Sign In';
+  const isAuthenticated = await authService.isAuthenticated();
+  if (!isAuthenticated && to.path !== '/login') {
+    next('/login');
+  } else if (isAuthenticated && to.path === '/login') {
+    next('/');
   } else {
     document.title = to.meta.title;
+    next();
   }
-  next();
 });
-
 export default router;

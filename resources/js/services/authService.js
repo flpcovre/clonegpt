@@ -1,30 +1,23 @@
 import { http } from './http';
 
-class AuthService {
+export const authService =  {
 
     async login(credentials) {
         try {
-            const response = await http.post('/login', credentials);
-            const { token } = response.data;
-
-            if (token) {
-                localStorage.setItem('token', token);
-                return true;
-            }
+            const { access_token } = await http.post('/login', credentials);
+            this.setToken(access_token);
+            return true;
         } catch (error) {
-            console.error('Erro ao fazer login:', error);
+            console.log(error);
             return false;
         }
-    }
+    },
 
-    logout() {
-        localStorage.removeItem('token');
-    }
+    getProfile: async () => await http.get('/me'),
 
-    isAuthenticated() {
-        const token = localStorage.getItem('token');
-        return !!token;
-    }
+    setToken: (token) => localStorage.setItem('token', token),
+
+    destroyToken: () => localStorage.removeItem('token'),
+
+    isAuthenticated: () => localStorage.getItem('token'),
 }
-
-export const authService = new AuthService();

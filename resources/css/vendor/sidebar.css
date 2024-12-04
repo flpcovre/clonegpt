@@ -1,5 +1,6 @@
 .sidebar {
     background-color: white !important;
+    position: relative;
 }
 
 .divider {
@@ -43,26 +44,26 @@
     text-align: center;
 }
 
-.sidebar {
-    max-height: 100vh;
-    overflow-y: auto;
+.components {
+    max-height: 100vh !important;
+    overflow-y: auto !important;
 }
 
-.sidebar::-webkit-scrollbar {
+.components::-webkit-scrollbar {
     width: 5px;
 }
 
-.sidebar::-webkit-scrollbar-track {
+.components::-webkit-scrollbar-track {
     background: #333;
     border-radius: 6px;
 }
 
-.sidebar::-webkit-scrollbar-thumb {
+.components::-webkit-scrollbar-thumb {
     background: #555;
     border-radius: 6px;
 }
 
-.sidebar::-webkit-scrollbar-thumb:hover {
+.components::-webkit-scrollbar-thumb:hover {
     background: #888;
 }
 
@@ -105,4 +106,43 @@
     color: white;
     margin-left: auto;
     margin-right: 10px;
+}
+
+.user-section {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #000;
+    border-top: 1px solid #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.user-section span {
+    flex-grow: 1;
+    max-width: calc(100% - 70px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white;
+}
+
+.fa-circle-user {
+    font-size: 25px;
+    color: white;
+}
+
+.fa-right-from-bracket {
+    font-size: 20px;
+    color: rgb(204, 67, 67);
+}
+
+.btn-profile {
+    cursor: pointer;
 }

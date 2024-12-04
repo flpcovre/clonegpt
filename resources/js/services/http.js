@@ -15,22 +15,22 @@ class Http {
         }, (error) => Promise.reject(error));
     }
 
-    get(url, params = {}) {
-        return this.client.get(url, { params });
+    async get(url, params = {}) {
+        return (await this.client.get(url, { params })).data;
     }
 
-    post(url, data = {}) {
-        return this.client.post(url, data);
+    async post(url, data = {}) {
+        return (await this.client.post(url, data)).data;
     }
 
-    put(url, data = {}) {
-        return this.client.put(url, data);
+    async put(url, data = {}) {
+        return (await this.client.put(url, data)).data;
     }
 
-    delete(url) {
-        return this.client.delete(url);
+    async delete(url) {
+        return (await this.client.delete(url)).data;
     }
 }
 
-const baseURL = `${window.BASE_URL}api`;
+const baseURL = `${window.BASE_URL}/api`;
 export const http = new Http(baseURL);

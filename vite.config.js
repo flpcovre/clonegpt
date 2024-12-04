@@ -27,4 +27,8 @@ export default defineConfig({
             '@css': path.resolve(__dirname, 'resources/css')
         },
     },
+    // server: {
+    //     host: '192.168.6.104',
+    //     port: 5173
+    // }
 });
