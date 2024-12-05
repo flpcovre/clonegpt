@@ -1,7 +1,6 @@
 import { http } from './http';
 
-export const authService =  {
-
+export const authService =  {  
     async login(credentials) {
         try {
             const { access_token } = await http.post('/login', credentials);
@@ -17,7 +16,7 @@ export const authService =  {
 
     setToken: (token) => localStorage.setItem('token', token),
 
-    destroyToken: () => localStorage.removeItem('token'),
+    getToken: () => localStorage.getItem('token'),
 
-    isAuthenticated: () => localStorage.getItem('token'),
+    destroyToken: () => localStorage.removeItem('token'),
 }

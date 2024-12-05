@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { authService } from '@/services/authService';
+import { RedirectIfNotAuth } from '@/middleware';
 
 import HomeScreen from '@/components/screens/HomeScreen.vue';
 import AboutScreen from '@/components/screens/AboutScreen.vue';
@@ -46,14 +46,7 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  const isAuthenticated = await authService.isAuthenticated();
-  if (!isAuthenticated && to.path !== '/login') {
-    next('/login');
-  } else if (isAuthenticated && to.path === '/login') {
-    next('/');
-  } else {
-    document.title = to.meta.title;
-    next();
-  }
+  await RedirectIfNotAuth(to, from, next);
 });
+
 export default router;

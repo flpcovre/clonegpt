@@ -23,6 +23,7 @@
         "@fortawesome/fontawesome-free": "^6.6.0",
         "express": "^4.21.1",
         "mitt": "^3.0.1",
+        "topbar": "^3.0.0",
         "vue-nprogress": "^0.2.0",
         "vue-router": "^4.4.5",
         "vuetify": "^3.7.4"
